@@ -1,205 +1,488 @@
-<!DOCTYPE html><html lang="ko">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>자퇴생의 증가?</title>  <script src="https://cdn.tailwindcss.com"></script>  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head><body class="bg-slate-100 min-h-screen">
-  <!-- Header -->
-  <header class="bg-indigo-700 text-white shadow-lg">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-      <div>
-        <h1 class="text-3xl font-bold">자퇴생의 증가?</h1>
-        <p class="text-indigo-100 text-sm mt-1">
-         젋탱예준
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다문화 이해도 소개 사이트</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:"Pretendard", sans-serif;
+      background:#f8fafc;
+      color:#222;
+      line-height:1.7;
+    }
+
+    header{
+  height:60vh;   /* 기존 100vh → 60vh 로 줄이기 */
+
+  background:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1400');
+
+  background-size:cover;
+  background-position:center;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+  color:white;
+  padding:20px;
+}
+
+    .hero h1{
+      font-size:60px;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      font-size:22px;
+      max-width:800px;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      background:white;
+      padding:15px;
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.1);
+      z-index:100;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#2563eb;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#1d4ed8;
+    }
+
+    section{
+      width:90%;
+      max-width:1100px;
+      margin:80px auto;
+    }
+
+    .section-title{
+      font-size:42px;
+      color:#2563eb;
+      margin-bottom:25px;
+    }
+
+    .card{
+      background:white;
+      padding:35px;
+      border-radius:25px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      margin-top:20px;
+    }
+
+    .card h3{
+      margin-bottom:15px;
+      color:#7c3aed;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      margin-top:30px;
+    }
+
+    .mini-card{
+      background:white;
+      padding:25px;
+      border-radius:20px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+      transition:0.3s;
+    }
+
+    .mini-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .mini-card h4{
+      color:#2563eb;
+      margin-bottom:10px;
+    }
+
+    canvas{
+      margin-top:30px;
+      background:white;
+      padding:20px;
+      border-radius:20px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .highlight{
+      color:#7c3aed;
+      font-weight:bold;
+    }
+
+    footer{
+      background:#1e293b;
+      color:white;
+      text-align:center;
+      padding:40px;
+      margin-top:80px;
+    }
+
+    @media(max-width:700px){
+
+      .hero h1{
+        font-size:40px;
+      }
+
+      .hero p{
+        font-size:18px;
+      }
+
+      .section-title{
+        font-size:32px;
+      }
+
+      nav{
+        gap:15px;
+        font-size:14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 메인 -->
+  <header>
+    <div class="hero">
+      <h1>🌍 다문화 이해도</h1>
+
+      <p>
+        다양한 문화를 이해하고 존중하는 능력은
+        미래 사회에서 매우 중요한 가치입니다.
+        우리는 서로 다른 문화를 이해할 때 더 넓은 세상을 만날 수 있습니다.
+      </p>
+    </div>
+  </header>
+
+  <!-- 메뉴 -->
+<nav align="center" style="padding:20px;">
+
+  <a href="#about">
+    <button
+      onmouseover="this.style.transform='scale(1.1)'"
+      onmouseout="this.style.transform='scale(1)'"
+      style="
+        background:linear-gradient(135deg,#3b82f6,#2563eb);
+        color:white;
+        border:none;
+        padding:12px 20px;
+        margin:8px;
+        border-radius:30px;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.3s;
+        box-shadow:0 5px 12px rgba(0,0,0,0.2);
+      ">
+      🌍 다문화 이해도란?
+    </button>
+  </a>
+
+  <a href="#importance">
+    <button
+      onmouseover="this.style.transform='scale(1.1)'"
+      onmouseout="this.style.transform='scale(1)'"
+      style="
+        background:linear-gradient(135deg,#06b6d4,#0891b2);
+        color:white;
+        border:none;
+        padding:12px 20px;
+        margin:8px;
+        border-radius:30px;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.3s;
+        box-shadow:0 5px 12px rgba(0,0,0,0.2);
+      ">
+      🤔 왜 중요할까?
+    </button>
+  </a>
+
+  <a href="#graph">
+    <button
+      onmouseover="this.style.transform='scale(1.1)'"
+      onmouseout="this.style.transform='scale(1)'"
+      style="
+        background:linear-gradient(135deg,#8b5cf6,#7c3aed);
+        color:white;
+        border:none;
+        padding:12px 20px;
+        margin:8px;
+        border-radius:30px;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.3s;
+        box-shadow:0 5px 12px rgba(0,0,0,0.2);
+      ">
+      📈 변화 추이
+    </button>
+  </a>
+
+  <a href="#solution">
+    <button
+      onmouseover="this.style.transform='scale(1.1)'"
+      onmouseout="this.style.transform='scale(1)'"
+      style="
+        background:linear-gradient(135deg,#f59e0b,#d97706);
+        color:white;
+        border:none;
+        padding:12px 20px;
+        margin:8px;
+        border-radius:30px;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.3s;
+        box-shadow:0 5px 12px rgba(0,0,0,0.2);
+      ">
+      💡 해결 방안
+    </button>
+  </a>
+
+  <a href="b.html">
+    <button
+      onmouseover="this.style.transform='scale(1.1)'"
+      onmouseout="this.style.transform='scale(1)'"
+      style="
+        background:linear-gradient(135deg,#ec4899,#be185d);
+        color:white;
+        border:none;
+        padding:12px 22px;
+        margin:8px;
+        border-radius:30px;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.3s;
+        box-shadow:0 5px 12px rgba(0,0,0,0.2);
+      ">
+      🧠 다문화 이해 유형 테스트
+    </button>
+  </a>
+
+</nav>
+
+  <!-- 설명 -->
+  <section id="about">
+
+    <h2 class="section-title">다문화 이해도란?</h2>
+
+    <div class="card">
+
+      <h3>📚 개념</h3>
+
+      <p>
+        다문화 이해도는 다른 나라와 문화,
+        언어, 생활 방식, 가치관을 존중하고 이해하는 능력을 의미합니다.
+      </p>
+
+      <br>
+
+      <p>
+        세계화가 진행되면서 한국 사회에도 다양한 문화적 배경을 가진 사람들이 함께 살아가고 있습니다.
+        따라서 서로를 이해하고 존중하는 태도가 점점 더 중요해지고 있습니다.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- 중요성 -->
+  <section id="importance">
+
+    <h2 class="section-title">왜 중요할까?</h2>
+
+    <div class="grid">
+
+      <div class="mini-card">
+        <h4>🤝 사회 갈등 감소</h4>
+
+        <p>
+          문화 차이에서 발생하는 오해와 편견을 줄여
+          서로 존중하는 사회를 만들 수 있습니다.
         </p>
-      </div><div class="flex gap-3">
-  <a 
-    href="b.html"
-    class="bg-red-500 hover:bg-red-400 text-white font-bold px-6 py-3 rounded-2xl shadow-lg transition duration-300 transform hover:scale-105 text-base"
-  >
-    ⚠️ 원인 보기
-  </a>
-        <a 
-    href="c.html"
-    class="bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-6 py-3 rounded-2xl shadow-lg transition duration-300 transform hover:scale-105 text-base"
-  >
-    🚀 해결방안 보기
-  </a>
+      </div>
 
-</div>
-</div>
+      <div class="mini-card">
+        <h4>🌎 글로벌 시대 준비</h4>
 
-  </header>  <!-- Main -->  <main class="max-w-7xl mx-auto px-6 py-8"><!-- Cards -->
-<section class="grid md:grid-cols-4 gap-5 mb-8">
-  <div class="bg-white rounded-2xl p-5 shadow">
-    <p class="text-slate-500 text-sm">전국 학생 수</p>
-    <h2 class="text-3xl font-bold mt-2">521만</h2>
-    <p class="text-green-600 text-sm mt-2">▲ 전년 대비 1.2%</p>
-  </div>
+        <p>
+          미래에는 다양한 국적과 문화를 가진 사람들과
+          협력하는 능력이 중요해집니다.
+        </p>
+      </div>
 
-  <div class="bg-white rounded-2xl p-5 shadow">
-    <p class="text-slate-500 text-sm">평균 사교육비</p>
-    <h2 class="text-3xl font-bold mt-2">41만원</h2>
-    <p class="text-red-600 text-sm mt-2">▲ 3.8% 증가</p>
-  </div>
+      <div class="mini-card">
+        <h4>🏫 학교 문화 개선</h4>
 
-  <div class="bg-white rounded-2xl p-5 shadow">
-    <p class="text-slate-500 text-sm">학교 수</p>
-    <h2 class="text-3xl font-bold mt-2">20,483개</h2>
-    <p class="text-slate-500 text-sm mt-2">초·중·고 기준</p>
-  </div>
+        <p>
+          다문화 학생들이 차별 없이 학교생활을 할 수 있도록
+          돕는 환경을 만들 수 있습니다.
+        </p>
+      </div>
 
-  <div class="bg-white rounded-2xl p-5 shadow">
-    <p class="text-slate-500 text-sm">방과후 참여율</p>
-    <h2 class="text-3xl font-bold mt-2">63%</h2>
-    <p class="text-green-600 text-sm mt-2">▲ 꾸준히 증가 중</p>
-  </div>
-</section>
+      <div class="mini-card">
+        <h4>💡 창의성 향상</h4>
 
-<!-- Charts -->
-<section class="grid lg:grid-cols-2 gap-6 mb-8">
-
-  <div class="bg-white rounded-2xl p-6 shadow">
-    <div class="flex justify-between items-center mb-5">
-      <h3 class="text-xl font-bold text-slate-800">
-        연도별 자퇴생 수 변화
-      </h3>
-
+        <p>
+          다양한 문화를 경험하면 더 넓은 시각과
+          창의적인 생각을 가질 수 있습니다.
+        </p>
+      </div>
 
     </div>
 
-    <canvas id="studentChart"></canvas>
-  </div>
+  </section>
 
-  <div class="bg-white rounded-2xl p-6 shadow">
-    <div class="flex justify-between items-center mb-5">
-      <h3 class="text-xl font-bold text-slate-800">
-        대학별 검정고시 입학생 비율 비교
-      </h3>
+  <!-- 그래프 -->
+  <section id="graph">
 
-      <button class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg text-sm">
-        2025 기준
-      </button>
+    <h2 class="section-title">📈 다문화 이해도 변화 추이</h2>
+
+    <div class="card">
+
+      <p>
+        아래 그래프는 학생들의 다문화 이해도 평균 점수가
+        해마다 증가하는 예시를 보여줍니다.
+      </p>
+
+      <canvas id="myChart"></canvas>
+
     </div>
 
-    <canvas id="privateChart"></canvas>
-  </div>
-</section>
+  </section>
 
-<!-- Table -->
-<section class="bg-white rounded-2xl shadow overflow-hidden">
-  <div class="p-6 border-b">
-    <h3 class="text-xl font-bold text-slate-800">
-      지역별 교육 통계
-    </h3>
-    <p class="text-slate-500 text-sm mt-1">
-      교육통계서비스(KESS) 기반 예시 데이터
-    </p>
-  </div>
+  <!-- 해결방안 -->
+  <section id="solution">
 
-  <div class="overflow-x-auto">
-    <table class="w-full text-left">
-      <thead class="bg-slate-100 text-slate-700 text-sm uppercase">
-        <tr>
-          <th class="px-6 py-4">지역</th>
-          <th class="px-6 py-4">학생 수</th>
-          <th class="px-6 py-4">학교 수</th>
-          <th class="px-6 py-4">사교육비</th>
-          <th class="px-6 py-4">사교육 참여율</th>
-        </tr>
-      </thead>
+    <h2 class="section-title">해결 및 개선 방안</h2>
 
-      <tbody class="divide-y">
-        <tr class="hover:bg-slate-50">
-          <td class="px-6 py-4 font-medium">서울</td>
-          <td class="px-6 py-4">92만</td>
-          <td class="px-6 py-4">1,308개</td>
-          <td class="px-6 py-4">52만원</td>
-          <td class="px-6 py-4">86.1%</td>
-        </tr>
+    <div class="grid">
 
-        <tr class="hover:bg-slate-50">
-          <td class="px-6 py-4 font-medium">대전</td>
-          <td class="px-6 py-4">18만</td>
-          <td class="px-6 py-4">302개</td>
-          <td class="px-6 py-4">39만원</td>
-          <td class="px-6 py-4">83.9%</td>
-        </tr>
+      <div class="mini-card">
+        <h4>🎓 교육 확대</h4>
 
-        <tr class="hover:bg-slate-50">
-          <td class="px-6 py-4 font-medium">부산</td>
-          <td class="px-6 py-4">41만</td>
-          <td class="px-6 py-4">624개</td>
-          <td class="px-6 py-4">37만원</td>
-          <td class="px-6 py-4">80.1%</td>
-        </tr>
+        <p>
+          학교에서 다문화 이해 교육과 체험 활동을
+          정기적으로 진행해야 합니다.
+        </p>
+      </div>
 
-        <tr class="hover:bg-slate-50">
-          <td class="px-6 py-4 font-medium">대구</td>
-          <td class="px-6 py-4">33만</td>
-          <td class="px-6 py-4">521개</td>
-          <td class="px-6 py-4">35만원</td>
-          <td class="px-6 py-4">79.5%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+      <div class="mini-card">
+        <h4>🌏 문화 체험 프로그램</h4>
 
-  </main>  <script>
-    // 학생 수 변화 차트
-    const studentCtx = document.getElementById('studentChart');
+        <p>
+          다양한 나라의 음식, 전통, 언어를 직접 체험할 수 있는
+          프로그램이 필요합니다.
+        </p>
+      </div>
 
-    new Chart(studentCtx, {
+      <div class="mini-card">
+        <h4>📱 올바른 미디어 사용</h4>
+
+        <p>
+          인터넷과 SNS에서 편견 없는 정보를 접할 수 있도록
+          교육해야 합니다.
+        </p>
+      </div>
+
+      <div class="mini-card">
+        <h4>❤️ 존중 문화 형성</h4>
+
+        <p>
+          서로의 차이를 인정하고 존중하는 분위기를
+          학교와 사회 전체에 만들어야 합니다.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    <h3>🌍 서로의 다름을 이해할 때 더 좋은 사회가 만들어집니다.</h3>
+  </footer>
+
+  <script>
+
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
       type: 'line',
+
       data: {
-        labels: ['2020', '2021', '2022', '2023', '2024'],
+        labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+
         datasets: [{
-          label: '학생 수(만 명)',
-          data: [1.4, 1.8, 2.2, 2.3, 2.4],
-          borderColor: '#4f46e5',
-          backgroundColor: 'rgba(79,70,229,0.1)',
-          tension: 0.4,
-          fill: true
+          label: '학생 다문화 이해도 평균 점수',
+
+          data: [52, 58, 63, 69, 74, 81],
+
+          borderWidth: 4,
+          tension: 0.3,
+          fill: true,
+          backgroundColor: 'rgba(147, 51, 234, 0.2)',
+          borderColor: '#7c3aed',
+          pointBackgroundColor: '#2563eb',
+          pointRadius: 5
         }]
       },
+
       options: {
         responsive: true,
+
         plugins: {
           legend: {
-            display: true
+            labels: {
+              font: {
+                size: 16
+              }
+            }
+          }
+        },
+
+        scales: {
+
+          y: {
+            beginAtZero: true,
+            max: 100,
+
+            ticks: {
+              stepSize: 10
+            }
           }
         }
       }
     });
 
-    // 사교육비 차트
-    const privateCtx = document.getElementById('privateChart');
+  </script>
 
-    new Chart(privateCtx, {
-      type: 'bar',
-      data: {
-        labels: ['서울대학교', '연세대학교', '고려대학교', '성균관대학교', '서강대학교'],
-        datasets: [{
-          label: '검정고시 입학생 비율(%)',
-          data: [1.2, 2.7, 1.7, 1.7, 1.3],
-          backgroundColor: [
-            '#6366f1',
-            '#8b5cf6',
-            '#06b6d4',
-            '#14b8a6',
-            '#22c55e'
-          ],
-          borderRadius: 10
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true
-          }
-        }
-      }
-    });
-  </script></body>
+</body>
 </html>
