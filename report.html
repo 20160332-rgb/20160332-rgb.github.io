@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>학생 신고</title>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:Pretendard;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+width:500px;
+background:rgba(255,255,255,0.05);
+padding:40px;
+border-radius:30px;
+}
+
+input,select,textarea{
+width:100%;
+padding:16px;
+margin-top:15px;
+border:none;
+border-radius:14px;
+background:#1e293b;
+color:white;
+}
+
+button{
+margin-top:20px;
+width:100%;
+padding:16px;
+border:none;
+border-radius:14px;
+background:#38bdf8;
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+#result{
+margin-top:20px;
+color:#22c55e;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+<a href="index.html"
+style="
+position:fixed;
+top:20px;
+left:20px;
+
+padding:14px 22px;
+
+background:#38bdf8;
+color:white;
+
+text-decoration:none;
+
+border-radius:16px;
+
+font-weight:bold;
+
+font-family:Pretendard,sans-serif;
+
+box-shadow:0 4px 15px rgba(0,0,0,0.3);
+
+transition:0.3s;
+
+z-index:999;
+">
+
+🏠 메인으로
+
+</a>
+<div class="box">
+
+<h1>📢 학생 해충 신고</h1>
+
+<input type="text" id="location" placeholder="학교 입력">
+
+<select id="bug">
+
+<option>모기</option>
+<option>러브버그</option>
+<option>깔따구</option>
+<option>미국흰불나방</option>
+
+</select>
+
+<textarea id="detail" rows="5" placeholder="상세 내용을 입력하세요"></textarea>
+
+<button onclick="submitReport()">
+신고 접수
+</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function submitReport(){
+
+const location =
+document.getElementById("location").value;
+
+const bug =
+document.getElementById("bug").value;
+
+document.getElementById("result").innerHTML =
+`✅ ${location} 학교의 ${bug} 신고가 정상 접수되었습니다.`;
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>위험 지도</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#0f172a;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+height:100vh;
+}
+
+/* 지도 */
+
+.korea-map{
+width:1000px;
+max-width:90%;
+
+border-radius:30px;
+
+box-shadow:
+0 0 50px rgba(56,189,248,0.4);
+
+transition:0.3s;
+}
+
+.korea-map:hover{
+transform:scale(1.02);
+}
+
+</style>
+</head>
+
+<body>
+<a href="index.html"
+style="
+position:fixed;
+top:20px;
+left:20px;
+
+padding:14px 22px;
+
+background:#38bdf8;
+color:white;
+
+text-decoration:none;
+
+border-radius:16px;
+
+font-weight:bold;
+
+font-family:Pretendard,sans-serif;
+
+box-shadow:0 4px 15px rgba(0,0,0,0.3);
+
+transition:0.3s;
+
+z-index:999;
+">
+
+🏠 메인으로
+
+</a>
+<img src="image.png" class="korea-map">
+
+</body>
+</html>

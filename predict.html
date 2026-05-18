@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>해충 발생 예측 분석</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Pretendard',sans-serif;
+background:#0f172a;
+color:white;
+padding:40px;
+}
+
+/* 헤더 */
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:40px;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.top h1{
+font-size:48px;
+}
+
+.ai-badge{
+padding:12px 22px;
+background:#38bdf8;
+border-radius:999px;
+font-weight:600;
+}
+
+/* 카드 */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
+
+/* 공통 카드 */
+
+.card{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:28px;
+padding:30px;
+backdrop-filter:blur(10px);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h2{
+margin-bottom:24px;
+font-size:28px;
+}
+
+/* 위험 점수 */
+
+.score{
+font-size:90px;
+font-weight:700;
+color:#38bdf8;
+}
+
+.score-text{
+margin-top:10px;
+color:#cbd5e1;
+line-height:1.7;
+}
+
+/* 그래프 */
+
+.chart{
+height:300px;
+display:flex;
+align-items:flex-end;
+gap:16px;
+margin-top:20px;
+}
+
+.bar{
+flex:1;
+background:linear-gradient(
+to top,
+#0ea5e9,
+#38bdf8
+);
+
+border-radius:18px 18px 0 0;
+position:relative;
+transition:0.3s;
+}
+
+.bar:hover{
+transform:scaleY(1.05);
+}
+
+.bar span{
+position:absolute;
+top:-38px;
+left:50%;
+transform:translateX(-50%);
+font-size:14px;
+}
+
+/* 지역 */
+
+.region{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px;
+margin-bottom:16px;
+border-radius:18px;
+background:rgba(255,255,255,0.05);
+}
+
+.badge{
+padding:8px 14px;
+border-radius:999px;
+font-size:13px;
+font-weight:bold;
+}
+
+.high{
+background:#ef4444;
+}
+
+.medium{
+background:#f59e0b;
+}
+
+.low{
+background:#22c55e;
+}
+
+/* AI 분석 */
+
+.analysis-box{
+padding:18px;
+background:rgba(255,255,255,0.05);
+border-radius:18px;
+margin-bottom:18px;
+line-height:1.8;
+color:#cbd5e1;
+}
+
+/* 원형 게이지 */
+
+.circle-wrap{
+display:flex;
+justify-content:center;
+margin-top:20px;
+}
+
+.circle{
+width:240px;
+height:240px;
+border-radius:50%;
+
+background:
+conic-gradient(
+#38bdf8 0% 84%,
+rgba(255,255,255,0.08) 84% 100%
+);
+
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.inner{
+width:180px;
+height:180px;
+border-radius:50%;
+background:#111827;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.inner h2{
+font-size:60px;
+}
+
+.inner p{
+color:#94a3b8;
+}
+
+/* 예측 목록 */
+
+.predict-item{
+padding:18px;
+border-radius:18px;
+background:rgba(255,255,255,0.05);
+margin-bottom:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.predict-item:hover{
+background:rgba(255,255,255,0.08);
+}
+
+.footer{
+margin-top:40px;
+text-align:center;
+color:#94a3b8;
+}
+
+/* 모바일 */
+
+@media(max-width:800px){
+
+.top h1{
+font-size:34px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+<a href="index.html"
+style="
+position:fixed;
+top:20px;
+left:20px;
+
+padding:14px 22px;
+
+background:#38bdf8;
+color:white;
+
+text-decoration:none;
+
+border-radius:16px;
+
+font-weight:bold;
+
+font-family:Pretendard,sans-serif;
+
+box-shadow:0 4px 15px rgba(0,0,0,0.3);
+
+transition:0.3s;
+
+z-index:999;
+">
+
+🏠 메인으로
+
+</a>
+<div class="top">
+
+<h1>
+📈 해충 발생 예측 분석
+</h1>
+
+<div class="ai-badge">
+AI 기반 실시간 분석
+</div>
+
+</div>
+
+<div class="grid">
+
+<!-- 위험도 -->
+
+<div class="card">
+
+<h2>실시간 위험지수</h2>
+
+<div class="circle-wrap">
+
+<div class="circle">
+
+<div class="inner">
+
+<h2>82</h2>
+<p>위험도 점수</p>
+
+</div>
+
+</div>
+
+</div>
+
+<p class="score-text">
+현재 고온다습한 기후와 최근 강수량 증가로 인해
+모기 및 러브버그의 급격한 확산 가능성이 높습니다.
+</p>
+
+</div>
+
+<!-- 그래프 -->
+
+<div class="card">
+
+<h2>주간 발생 예측</h2>
+
+<div class="chart">
+
+<div class="bar" style="height:35%">
+<span>월</span>
+</div>
+
+<div class="bar" style="height:50%">
+<span>화</span>
+</div>
+
+<div class="bar" style="height:65%">
+<span>수</span>
+</div>
+
+<div class="bar" style="height:85%">
+<span>목</span>
+</div>
+
+<div class="bar" style="height:100%">
+<span>금</span>
+</div>
+
+<div class="bar" style="height:90%">
+<span>토</span>
+</div>
+
+<div class="bar" style="height:70%">
+<span>일</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- 지역 위험 -->
+
+<div class="card">
+
+<h2>학교별 위험 분석</h2>
+
+<div class="region">
+<span>대전 새로남중고등학교</span>
+<span class="badge high">매우 높음</span>
+</div>
+
+<div class="region">
+<span>대전 만년고등학교</span>
+<span class="badge medium">주의</span>
+</div>
+
+<div class="region">
+<span>대전 충남고등학교</span>
+<span class="badge high">위험</span>
+</div>
+
+<div class="region">
+<span>대전 도안고등학교</span>
+<span class="badge low">보통</span>
+</div>
+
+</div>
+
+<!-- AI 분석 -->
+
+<div class="card">
+
+<h2>AI 예측 리포트</h2>
+
+<div class="analysis-box">
+🌧 이번 주 강수량 증가로 인해
+하천 주변 깔따구 발생량 증가 예상
+</div>
+
+<div class="analysis-box">
+🦟 평균 기온 상승으로 인해
+야간 모기 활동량 32% 증가 가능성
+</div>
+
+<div class="analysis-box">
+🚨 새로남중고등학교 근처에서
+러브버그 민원 급증 예상
+</div>
+
+</div>
+
+<!-- 우선 방역 -->
+
+<div class="card">
+
+<h2>방역 우선순위</h2>
+
+<div class="predict-item">
+<span>1. 대전 새로남중고등학교</span>
+<span>92점</span>
+</div>
+
+<div class="predict-item">
+<span>2. 대전 충남고등학교 </span>
+<span>87점</span>
+</div>
+
+<div class="predict-item">
+<span>3. 대전 만년고등학교</span>
+<span>81점</span>
+</div>
+
+<div class="predict-item">
+<span>4. 대전 도안고등학교</span>
+<span>76점</span>
+</div>
+
+</div>
+
+<!-- 데이터 분석 -->
+
+<div class="card">
+
+<h2>분석 데이터</h2>
+
+<div class="analysis-box">
+✔ 기상청 실시간 기온 데이터
+</div>
+
+<div class="analysis-box">
+✔ 공공 민원 신고 데이터
+</div>
+
+<div class="analysis-box">
+✔ 인구밀도 및 유동인구 데이터
+</div>
+
+<div class="analysis-box">
+✔ AI 패턴 분석 기반 예측 모델
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 BugGuard City AI Prediction System
+</div>
+
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BugGuard City</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Pretendard', sans-serif;
+    background:#0f172a;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* 배경 효과 */
+
+.bg{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(circle at top left,#1e3a8a 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#0ea5e9 0%,transparent 30%);
+    z-index:-1;
+}
+
+/* 헤더 */
+
+header{
+    padding:40px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+}
+
+.logo span{
+    color:#38bdf8;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+/* 메인 */
+
+.hero{
+    padding:80px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:50px;
+}
+
+.hero-text{
+    flex:1;
+    min-width:300px;
+}
+
+.hero-text h1{
+    font-size:65px;
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.hero-text h1 span{
+    color:#38bdf8;
+}
+
+.hero-text p{
+    color:#cbd5e1;
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:35px;
+}
+
+/* 버튼 */
+
+.btn-group{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:16px 28px;
+    border-radius:18px;
+    border:none;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.primary{
+    background:#38bdf8;
+    color:white;
+}
+
+.secondary{
+    background:rgba(255,255,255,0.08);
+    color:white;
+    border:1px solid rgba(255,255,255,0.15);
+}
+
+.btn:hover{
+    transform:translateY(-5px) scale(1.03);
+}
+
+/* 우측 카드 */
+
+.dashboard{
+    flex:1;
+    min-width:320px;
+}
+
+.glass-card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    border-radius:30px;
+
+    padding:30px;
+
+    box-shadow:0 8px 30px rgba(0,0,0,0.3);
+}
+
+/* 위험도 */
+
+.risk-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.badge{
+    background:#ef4444;
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* 게이지 */
+
+.circle-wrap{
+    display:flex;
+    justify-content:center;
+    margin:30px 0;
+}
+
+.circle{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+
+    background:
+    conic-gradient(
+    #38bdf8 0% 82%,
+    rgba(255,255,255,0.1) 82% 100%
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.inner-circle{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    background:#111827;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.inner-circle h2{
+    font-size:55px;
+}
+
+.inner-circle p{
+    color:#94a3b8;
+}
+
+/* 지역 */
+
+.region-list{
+    margin-top:25px;
+}
+
+.region{
+    background:rgba(255,255,255,0.05);
+    border-radius:16px;
+    padding:15px 18px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:14px;
+
+    transition:0.3s;
+}
+
+.region:hover{
+    transform:scale(1.03);
+}
+
+.level{
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.high{
+    background:#ef4444;
+}
+
+.medium{
+    background:#f59e0b;
+}
+
+.low{
+    background:#22c55e;
+}
+
+/* 하단 */
+
+.bottom-section{
+    padding:30px 8% 80px;
+}
+
+.section-title{
+    font-size:34px;
+    margin-bottom:35px;
+}
+
+/* 카드 그리드 */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.info-card{
+    background:rgba(255,255,255,0.08);
+    border-radius:25px;
+    padding:28px;
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    transition:0.4s;
+}
+
+.info-card:hover{
+    transform:translateY(-8px);
+}
+
+.info-card h3{
+    margin-bottom:18px;
+    font-size:24px;
+}
+
+.info-card p{
+    color:#cbd5e1;
+    line-height:1.7;
+}
+
+/* 푸터 */
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#94a3b8;
+}
+
+/* 모바일 */
+
+@media(max-width:900px){
+
+.hero-text h1{
+    font-size:48px;
+}
+
+.hero{
+    padding-top:40px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<header>
+
+<div class="logo">
+🐜 Bug<span>Guard</span>
+</div>
+
+<nav>
+<a href="index.html">📊 대시보드</a>
+<a href="map.html">🗺 위험지도</a>
+<a href="predict.html">📈 예측분석</a>
+<a href="status.html">🚨 방역현황</a>
+<a href="report.html">📢 학생신고</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>
+도심형 <span>돌발해충</span><br>
+학교에 발생 예측 플랫폼
+</h1>
+
+<p>
+기상 데이터와 공공 민원 데이터를 분석하여
+도심 내 해충 발생 위험을 예측하고
+방역 우선순위를 자동 도출하는 스마트 도시 시스템
+</p>
+
+<div class="btn-group">
+
+<button class="btn primary">
+실시간 분석 보기
+</button>
+
+<a href = https://www.data.go.kr/data/15123428/fileData.do><button class="btn secondary">
+공공데이터 보기
+</button></a>
+
+</div>
+
+</div>
+
+<div class="dashboard">
+
+<div class="glass-card">
+
+<div class="risk-top">
+
+<h2>실시간 위험지수</h2>
+
+<div class="badge">
+위험
+</div>
+
+</div>
+
+<div class="circle-wrap">
+
+<div class="circle">
+
+<div class="inner-circle">
+
+<h2 id="score">82</h2>
+<p>위험도 점수</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="region-list">
+
+<div class="region">
+<span>대전 새로남중고등학교</span>
+<span class="level high">매우 높음</span>
+</div>
+
+<div class="region">
+<span>대전 충남고등학교</span>
+<span class="level medium">주의</span>
+</div>
+
+<div class="region">
+<span>대전 만년고등학교</span>
+<span class="level low">보통</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="bottom-section">
+
+<h2 class="section-title">
+주요 분석 기능
+</h2>
+
+<div class="grid">
+
+<div class="info-card">
+
+<h3>🛰 실시간 기상 분석</h3>
+
+<p>
+기온, 습도, 강수량 데이터를 기반으로
+해충 발생 가능성을 예측합니다.
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>📍 위험지역 시각화</h3>
+
+<p>
+도심 내 위험 지역을 색상 기반으로
+직관적으로 표시합니다.
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>🚨 방역 우선순위</h3>
+
+<p>
+민원 수와 인구밀도를 분석하여
+효율적인 방역 순서를 제공합니다.
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>🤖 AI 발생 예측</h3>
+
+<p>
+공공데이터 기반 패턴 분석을 통해
+돌발 해충 확산을 사전에 예측합니다.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 BugGuard City Smart Platform
+</footer>
+
+<script>
+
+const score = document.getElementById("score");
+
+let value = 0;
+
+const target = 82;
+
+const animation = setInterval(()=>{
+
+value++;
+
+score.innerText = value;
+
+if(value >= target){
+clearInterval(animation);
+}
+
+},20);
+
+</script>
+
+</body>
+</html>
