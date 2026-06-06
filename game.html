@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>틱택고</title>
+
+<style>
+
+body{
+    text-align:center;
+    font-family:Arial;
+    background:#f4f4f4;
+}
+
+#board{
+    display:grid;
+    gap:4px;
+    justify-content:center;
+    margin:20px auto;
+}
+
+.cell{
+    width:70px;
+    height:70px;
+
+    border:2px solid #333;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:32px;
+    background:white;
+}
+
+.player{
+    background:gold;
+}
+
+#message{
+    font-size:22px;
+    margin-top:10px;
+}
+
+select{
+    font-size:18px;
+}
+
+button{
+    font-size:18px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>틱택고</h1>
+
+<p>
+방향키 이동<br>
+U = Undo<br>
+R = Reset
+</p>
+<button onclick="showRules()">
+규칙 설명
+</button>
+<select id="stageSelect"></select>
+
+<div id="board"></div>
+
+<div id="message"></div>
+
+<script src="game.js"></script>
+
+</body>
+</html>
