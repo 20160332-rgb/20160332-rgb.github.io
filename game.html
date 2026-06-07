@@ -70,7 +70,27 @@ R = Reset
 <div id="board"></div>
 
 <div id="message"></div>
+<div id="mobileControls">
 
+    <div>
+        <button onclick="move(-1,0)">↑</button>
+    </div>
+
+    <div>
+        <button onclick="move(0,-1)">←</button>
+        <button onclick="move(0,1)">→</button>
+    </div>
+
+    <div>
+        <button onclick="move(1,0)">↓</button>
+    </div>
+
+    <div style="margin-top:10px;">
+        <button onclick="undo()">↩</button>
+        <button onclick="reset()">⟲</button>
+    </div>
+
+</div>
 <script src="game.js"></script>
 
 </body>
