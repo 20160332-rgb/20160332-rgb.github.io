@@ -1,0 +1,65 @@
+body{
+    margin:0;
+    background:#87CEEB;
+    font-family:Arial;
+    overflow:hidden;
+}
+#game{
+    position:absolute;
+    width:600px;
+    height:700px;
+
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+
+    background:white;
+    border:5px solid black;
+    overflow:hidden;
+}
+
+/* 플레이어가 움직이는 영역의 위쪽 선 */
+#floor{
+    position:absolute;
+    left:0;
+    bottom:80px;
+    width:100%;
+    height:5px;
+    background:black;
+}
+
+#player{
+    position:absolute;
+    width:40px;
+    height:40px;
+    background:red;
+    border-radius:6px;
+    left:280px;
+    top:640px;
+}
+
+.fly{
+    position:absolute;
+    font-size:32px;
+    transform:rotate(180deg);
+}
+
+#ui{
+    position:absolute;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:1000;
+    text-align:center;
+}
+
+#gameOver{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    border:3px solid black;
+    padding:20px;
+    display:none;
+}

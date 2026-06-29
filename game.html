@@ -1,97 +1,38 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>틱택고</title>
-
-<style>
-
-body{
-    text-align:center;
-    font-family:Arial;
-    background:#f4f4f4;
-}
-
-#board{
-    display:grid;
-    gap:4px;
-    justify-content:center;
-    margin:20px auto;
-}
-
-.cell{
-    width:70px;
-    height:70px;
-
-    border:2px solid #333;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:32px;
-    background:white;
-}
-
-.player{
-    background:gold;
-}
-
-#message{
-    font-size:22px;
-    margin-top:10px;
-}
-
-select{
-    font-size:18px;
-}
-
-button{
-    font-size:18px;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <title>파리 피하기 게임</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>틱택고</h1>
-
-<p>
-방향키 이동<br>
-U = Undo<br>
-R = Reset
-</p>
-<button onclick="showRules()">
-규칙 설명
-</button>
-<select id="stageSelect"></select>
-
-<div id="board"></div>
-
-<div id="message"></div>
-<div id="mobileControls">
+<div id="ui">
+    <h1>🪰 파리 피하기</h1>
 
     <div>
-        <button onclick="move(-1,0)">↑</button>
+        ❤️ 생명 : <span id="life">1</span>
+        ⏱️ 시간 : <span id="time">0</span>
     </div>
 
-    <div>
-        <button onclick="move(0,-1)">←</button>
-        <button onclick="move(0,1)">→</button>
-    </div>
+    <button id="start">게임 시작</button>
+</div>
 
-    <div>
-        <button onclick="move(1,0)">↓</button>
-    </div>
+<div id="game">
 
-    <div style="margin-top:10px;">
-        <button onclick="undo()">↩</button>
-        <button onclick="reset()">⟲</button>
-    </div>
+    <div id="floor"></div>
+
+    <div id="player"></div>
 
 </div>
-<script src="game.js"></script>
+
+<div id="gameOver">
+    <h2>게임 오버!</h2>
+    <p id="result"></p>
+    <button onclick="startGame()">다시하기</button>
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
