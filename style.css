@@ -2,16 +2,16 @@ body{
     margin:0;
     background:#87CEEB;
     font-family:Arial;
-    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 #game{
-    position:absolute;
+    position:relative;
     width:600px;
     height:700px;
-
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
+    margin-top:90px;
 
     background:white;
     border:5px solid black;
@@ -37,6 +37,35 @@ body{
     left:280px;
     top:640px;
 }
+#mobileControls{
+    position:fixed;
+    bottom:20px;
+    left:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    padding:0 25px;
+    z-index:2000;
+    pointer-events:none;
+}
+
+#mobileControls button{
+    width:90px;
+    height:90px;
+    border:none;
+    border-radius:50%;
+    font-size:40px;
+    background:rgba(0,0,0,0.6);
+    color:white;
+    pointer-events:auto;
+    user-select:none;
+    touch-action:none;
+}
+
+#mobileControls button:active{
+    transform:scale(0.92);
+    background:rgba(0,0,0,0.8);
+}
 
 .fly{
     position:absolute;
@@ -58,8 +87,38 @@ body{
     left:50%;
     top:50%;
     transform:translate(-50%,-50%);
+
     background:white;
     border:3px solid black;
     padding:20px;
     display:none;
+
+    z-index:9999;   /* 추가 */
+}
+#controls{
+    width:600px;
+    margin-top:20px;
+
+    display:flex;
+    justify-content:space-between;
+}
+
+#controls button{
+    width:180px;
+    height:70px;
+
+    font-size:28px;
+    font-weight:bold;
+
+    border:none;
+    border-radius:15px;
+
+    background:#444;
+    color:white;
+
+    cursor:pointer;
+}
+
+#controls button:active{
+    transform:scale(0.95);
 }
