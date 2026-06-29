@@ -5,7 +5,7 @@ const gameHeight = 700;
 let px = 280;
 let py = gameHeight - 60;
 
-lpx = gameWidth / 2 - 20;
+px = gameWidth / 2 - 20;
 py = gameHeight - 60;
 
 player.style.left = px + "px";
@@ -21,6 +21,71 @@ let timer;
 let difficulty=250;
 
 const keys={};
+const leftBtn = document.getElementById("leftBtn");
+const rightBtn = document.getElementById("rightBtn");
+
+function pressLeft(){
+    keys["ArrowLeft"]=true;
+}
+
+function releaseLeft(){
+    keys["ArrowLeft"]=false;
+}
+
+function pressRight(){
+    keys["ArrowRight"]=true;
+}
+
+function releaseRight(){
+    keys["ArrowRight"]=false;
+}
+
+leftBtn.addEventListener("mousedown",pressLeft);
+leftBtn.addEventListener("mouseup",releaseLeft);
+leftBtn.addEventListener("mouseleave",releaseLeft);
+
+rightBtn.addEventListener("mousedown",pressRight);
+rightBtn.addEventListener("mouseup",releaseRight);
+rightBtn.addEventListener("mouseleave",releaseRight);
+
+leftBtn.addEventListener("touchstart",e=>{
+    e.preventDefault();
+    pressLeft();
+});
+
+leftBtn.addEventListener("touchend",releaseLeft);
+
+rightBtn.addEventListener("touchstart",e=>{
+    e.preventDefault();
+    pressRight();
+});
+
+rightBtn.addEventListener("touchend",releaseRight);
+
+leftBtn.addEventListener("touchstart", e=>{
+    e.preventDefault();
+    keys["ArrowLeft"] = true;
+});
+
+leftBtn.addEventListener("touchend", ()=>{
+    keys["ArrowLeft"] = false;
+});
+
+rightBtn.addEventListener("touchstart", e=>{
+    e.preventDefault();
+    keys["ArrowRight"] = true;
+});
+
+rightBtn.addEventListener("touchend", ()=>{
+    keys["ArrowRight"] = false;
+});
+leftBtn.addEventListener("mousedown", ()=>keys["ArrowLeft"]=true);
+leftBtn.addEventListener("mouseup", ()=>keys["ArrowLeft"]=false);
+leftBtn.addEventListener("mouseleave", ()=>keys["ArrowLeft"]=false);
+
+rightBtn.addEventListener("mousedown", ()=>keys["ArrowRight"]=true);
+rightBtn.addEventListener("mouseup", ()=>keys["ArrowRight"]=false);
+rightBtn.addEventListener("mouseleave", ()=>keys["ArrowRight"]=false);
 
 document.addEventListener("keydown",e=>{
     keys[e.key]=true;
